@@ -1,0 +1,24 @@
+#include "pythagorean_triplet.h"
+#include <stdio.h>
+
+
+triplets_t * triplets_with_sum(uint16_t sum){
+    triplets_t * triplets = malloc(sizeof(triplets)+8);
+    triplets->count=0;
+    for(uint16_t a=1; a<=sum-2; a++) {
+        for(uint16_t b=sum-(a+1); b>a; b--) {
+            uint16_t c=sum-(a+b);
+            if (a*a + b*b == c*c){
+                triplets->count++;
+                triplets = realloc(triplets,sizeof(triplets)+triplets->count*sizeof(triplet_t));
+                triplets->triplets[triplets->count-1].a=a;
+                triplets->triplets[triplets->count-1].b=b;
+                triplets->triplets[triplets->count-1].c=c;
+            }
+        }
+    }
+    return triplets;
+}
+void free_triplets(triplets_t* triplets){
+    free(triplets);
+}
