@@ -1,0 +1,36 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. armstrong-numbers.
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       REPOSITORY. FUNCTION ALL INTRINSIC.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 WS-NUMBER PIC X(8).
+       01 WS-NUM-TABLE REDEFINES WS-NUMBER.
+           05 WS-N PIC 9 OCCURS 8 TIMES.
+       01 WS-NUM-TABLE2 REDEFINES WS-NUMBER.
+           05 WS-NA PIC X OCCURS 8 TIMES.
+       01 WS-RESULT PIC 9.
+       01 WS-NI PIC 9. 
+       01 WS-NL PIC 9. 
+       01 WS-SUM PIC 9(10).    
+       01 WS-NUMBER-N PIC 9(10).    
+       01 WS-FAC PIC 9(10).    
+       PROCEDURE DIVISION.
+       ARMSTRONG-NUMBERS.
+           MOVE 0 TO WS-SUM
+           PERFORM VARYING WS-NI FROM 1 BY 1 
+               UNTIL WS-NA(WS-NI) = SPACE OR WS-NI > 8
+           END-PERFORM
+           COMPUTE WS-NL = WS-NI - 1    
+           PERFORM VARYING WS-NI FROM 1 BY 1 
+               UNTIL WS-NI > WS-NL
+               COMPUTE WS-FAC = WS-N(WS-NI) ** WS-NL
+               ADD WS-FAC TO WS-SUM
+           END-PERFORM
+           MOVE WS-NUMBER TO WS-NUMBER-N
+           IF WS-NUMBER-N = WS-SUM OR WS-NUMBER = 0 THEN
+               MOVE 1 TO WS-RESULT
+           ELSE 
+               MOVE 0 TO WS-RESULT
+           END-IF.    
